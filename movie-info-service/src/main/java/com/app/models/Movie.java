@@ -1,4 +1,4 @@
-package com.app.resources;
+package com.app.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,4 +10,5 @@ import lombok.Setter;
 public class Movie {
 	private String movieId;
 	private String name;
+	private String desc;
 }

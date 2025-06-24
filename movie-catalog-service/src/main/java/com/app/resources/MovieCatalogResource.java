@@ -32,21 +32,22 @@ public class MovieCatalogResource {
 		UserRating userRating = null;
 		try {
 			userRating = restClient.get()
-		        .uri("http://localhost:8082/ratingsdata/users/" + userId)
+		        .uri("http://RATING-MOVIE-SERVICE/ratingsdata/users/" + userId)
 		        .retrieve()
 		        .body(UserRating.class);
+			System.out.println("data fetched successfully!");
 		}catch(Exception ex) {
+			System.out.println("couldn't fech the data properly!");
 			System.out.println(ex);
 		}
 		
 		
-
 		    List<Rating> ratings = userRating.getUserRatings();
 		 
 		 return ratings.stream().map(rating -> {
 			 //for each movie id call movie info service and get details
 			 Movie movie = restClient.get()
-					 .uri("http://localhost:8081/movies/"+ rating.getMovieId())
+					 .uri("http://MOVIE-INFO-SERVICE/movies/"+ rating.getMovieId())
 					 .retrieve()
 					 .body(Movie.class);
 			 //put all of them together
